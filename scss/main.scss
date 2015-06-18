@@ -1,0 +1,15 @@
+@import 'common';
+
+body {
+    margin: 0;
+    font-family: $sans;
+}
+
+a {
+    text-decoration: none;
+    color: $link-col;
+}
+
+.clear {
+    clear: both;
+}

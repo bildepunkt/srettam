@@ -1,0 +1,18 @@
+header {
+  padding: 30px;
+  border-bottom: 1px solid gray; }
+  header h1 {
+    margin: 0 30px 0 0;
+    float: left; }
+  header .filters {
+    float: left;
+    margin-top: 6px; }
+    header .filters input {
+      padding: 6px; }
+      header .filters input[type="text"] {
+        margin-right: 12px;
+        border-radius: 2px;
+        border: 1px solid #ccc;
+        width: 220px; }
+      header .filters input[type="checkbox"] {
+        margin-left: 12px; }
