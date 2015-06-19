@@ -1,0 +1,46 @@
+@import 'common';
+
+aside {
+    width: 380px;
+    border-right: $module-border;
+    height: 100%;
+
+    .filter {
+        padding: 16px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .client {
+        h4 {
+            background-color: #ccc;
+            padding: 6px 20px;
+            margin: 0;
+        }
+    }
+
+    .matter {
+        padding: 12px;
+    }
+
+    .loading {
+        background-image: url('../img/loading.gif');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 42px;
+
+        * {
+            display: none;
+        }
+    }
+
+    .error {
+        padding: 24px;
+        color: maroon;
+    }
+}

@@ -1,0 +1,6 @@
+aside {
+  width: 360px;
+  border-right: 1px solid gray;
+  height: 100%; }
+  aside .filter {
+    padding: 24px; }

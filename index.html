@@ -1,24 +1,48 @@
 <!DOCTYPE html>
-<html ng-app="mattersApp">
+<html>
 <head>
     <title>Matters App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="build/main.css">
 </head>
-<body>
+<body ng-app="mattersApp">
+    <!-- Header -->
     <header>
         <h1>Matters</h1>
         <div class="filters">
-            <input name="client-filter"  type="text" placeholder="">
-            <input name="keyword-filter" type="text" placeholder="">
-            <input id="hide-closed"    type="checkbox">
+            <input id="client-filter" type="text" placeholder="Filter by client...">
+            <input id="keyword-filter" type="text" placeholder="Filter by keyword...">
+            <input id="hide-closed" type="checkbox">
             <label for="hide-closed">Hide closed matters</label>
         </div>
         <div class="clear"></div>
     </header>
 
-    <aside></aside>
+    <!-- Sidebar -->
+    <aside ng-controller="SidebarController">
+        <div class="filter">
+            <input id="select-all" type="checkbox">
+            <label for="select-all">Select all</label>
+        </div>
 
+        <div class="loading" ng-class="{loading: !loaded}">
+            <ul ng-if="clients">
+                <li class="client" ng-repeat="client in clients">
+                    <h4>{{client.client_name}}</h4>
+                    <ul>
+                        <li class="matter" ng-repeat="matter in client.matters">
+                            <div>{{matter.number}}</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="error" ng-if="error">
+                No results found...
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
     <section></section>
 
     <script src="build/main.js"></script>

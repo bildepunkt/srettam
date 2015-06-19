@@ -1,15 +1,42 @@
 @import 'common';
 
-body {
-    margin: 0;
-    font-family: $sans;
-}
+html {
+    height: 100%;
 
-a {
-    text-decoration: none;
-    color: $link-col;
-}
+    section, article, header, footer, nav, aside {
+        display: block;
+    }
 
-.clear {
-    clear: both;
+    body {
+        margin: 0;
+        font-family: $sans;
+        height: 100%;
+    }
+
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    h3 { font-size: 18px; }
+    h4 { font-size: 14px; }
+
+    a {
+        text-decoration: none;
+        color: $link-col;
+    }
+
+    input {
+        &[type="text"] {
+            margin-right: 12px;
+            border-radius: 2px;
+            border: 1px solid #aaa;
+        }
+
+        &[type="checkbox"] {
+            font-size: 24px;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .clear {
+        clear: both;
+    }
 }
