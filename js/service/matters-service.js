@@ -3,19 +3,29 @@
 var angular = require('angular');
 
 /**
+ * provides matters data to controllers
+ *
  * @service mattersService
  * @author Chris Peters
  */
 module.exports = function() {
-    var clients;
+    var matters;
 
     return {
-        setClients: function(_clients) {
-            clients = _clients;
+        /**
+         * #method setClients
+         * @param {array} _matters
+         */
+        setMatters: function(_matters) {
+            matters = _matters;
         },
 
-        getClients: function() {
-            return clients;
+        /**
+         * #method getMatters
+         * @return {array}
+         */
+        getMatters: function() {
+            return matters;
         }
     };
 };

@@ -4,6 +4,8 @@ var jQuery = require('jquery');
 var angular = require('angular')
 
 /**
+ * offsets the options menu position based on list container's scroll top
+ * 
  * @directive positionOptions
  * @author Chris Peters
  */
@@ -13,6 +15,9 @@ module.exports = function() {
             $optionMenus,
             $optionMenu;
 
+        /**
+         * @method listScrollHandler
+         */
         var listScrollHandler = function() {
             $optionMenus = $optionMenus || $el.find('.options > ul');
             $optionMenus.each(function() {

@@ -3,18 +3,21 @@
 var angular = require('angular');
 
 /**
+ * fetches and gives matters data to mattersService
+ *
  * @controller SidebarController
  * @author Chris Peters
  */
 module.exports = function($scope, $http, mattersService) {
+
     /**
-     * initialize module
      * @method init
+     * @param {string} url
      */
-    this.init = function(url) {
+    var init = function(url) {
         $http.get(url).
             success(function(data) {
-                mattersService.setClients(angular.fromJson(data));
+                mattersService.setMatters(angular.fromJson(data));
                 $scope.clients = mattersService.getClients();
                 $scope.loaded = true;
             }).
@@ -25,5 +28,5 @@ module.exports = function($scope, $http, mattersService) {
             });
     };
 
-    this.init('data/matters.json');
+    init('data/matters.json');
 };

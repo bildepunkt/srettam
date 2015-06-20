@@ -4,6 +4,9 @@ var jQuery = require('jquery');
 var angular = require('angular');
 
 /**
+ * ensures that the list container's height is the difference between the
+ * viewport and the header
+ *
  * @directive listHeight
  * @author Chris Peters
  */
@@ -12,6 +15,9 @@ module.exports = function($window) {
         var $win = jQuery($window);
         var $el = jQuery(element);
 
+        /**
+         * @method windowResizeHandler
+         */
         var windowResizeHandler = function() {
             $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' })
         };

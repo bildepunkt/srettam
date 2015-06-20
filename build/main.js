@@ -13,6 +13,8 @@ app.controller('MatterController', require('./matter-controller'));
 var angular = require('angular');
 
 /**
+ * handles user interaction with matter items
+ *
  * @controller MatterController
  * @author Chris Peters
  */
@@ -20,7 +22,8 @@ module.exports = function($scope) {
     $scope.active = false;
 
     /**
-     * toggles a matter's options menu
+     * toggles a matter's options menu visibility
+     *
      * @method optionsClick
      */
     $scope.optionsClick = function() {
@@ -38,18 +41,21 @@ module.exports = function($scope) {
 var angular = require('angular');
 
 /**
+ * fetches and gives matters data to mattersService
+ *
  * @controller SidebarController
  * @author Chris Peters
  */
 module.exports = function($scope, $http, mattersService) {
+
     /**
-     * initialize module
      * @method init
+     * @param {string} url
      */
-    this.init = function(url) {
+    var init = function(url) {
         $http.get(url).
             success(function(data) {
-                mattersService.setClients(angular.fromJson(data));
+                mattersService.setMatters(angular.fromJson(data));
                 $scope.clients = mattersService.getClients();
                 $scope.loaded = true;
             }).
@@ -60,7 +66,7 @@ module.exports = function($scope, $http, mattersService) {
             });
     };
 
-    this.init('data/matters.json');
+    init('data/matters.json');
 };
 
 },{"angular":11}],4:[function(require,module,exports){
@@ -78,6 +84,9 @@ var jQuery = require('jquery');
 var angular = require('angular');
 
 /**
+ * ensures that the list container's height is the difference between the
+ * viewport and the header
+ *
  * @directive listHeight
  * @author Chris Peters
  */
@@ -86,6 +95,9 @@ module.exports = function($window) {
         var $win = jQuery($window);
         var $el = jQuery(element);
 
+        /**
+         * @method windowResizeHandler
+         */
         var windowResizeHandler = function() {
             $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' })
         };
@@ -102,6 +114,8 @@ var jQuery = require('jquery');
 var angular = require('angular')
 
 /**
+ * offsets the options menu position based on list container's scroll top
+ * 
  * @directive positionOptions
  * @author Chris Peters
  */
@@ -111,6 +125,9 @@ module.exports = function() {
             $optionMenus,
             $optionMenu;
 
+        /**
+         * @method listScrollHandler
+         */
         var listScrollHandler = function() {
             $optionMenus = $optionMenus || $el.find('.options > ul');
             $optionMenus.each(function() {
@@ -153,19 +170,29 @@ app.factory('mattersService', require('./matters-service'));
 var angular = require('angular');
 
 /**
+ * provides matters data to controllers
+ *
  * @service mattersService
  * @author Chris Peters
  */
 module.exports = function() {
-    var clients;
+    var matters;
 
     return {
-        setClients: function(_clients) {
-            clients = _clients;
+        /**
+         * #method setClients
+         * @param {array} _matters
+         */
+        setMatters: function(_matters) {
+            matters = _matters;
         },
 
-        getClients: function() {
-            return clients;
+        /**
+         * #method getMatters
+         * @return {array}
+         */
+        getMatters: function() {
+            return matters;
         }
     };
 };
