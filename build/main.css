@@ -1,21 +1,18 @@
-aside {
-  width: 360px;
-  border-right: 1px solid gray;
-  height: 100%; }
-  aside .filter {
-    padding: 24px; }
-
 
 header {
+  background-color: #fff;
+  border-bottom: 1px solid gray;
   padding: 30px;
-  border-bottom: 1px solid gray; }
+  position: relative;
+  z-index: 2; }
   header h1 {
     margin: 0 30px 0 0;
     float: left; }
   header .filters {
-    float: left; }
+    float: left;
+    margin-top: 2px; }
     header .filters input {
-      padding: 10px; }
+      padding: 8px; }
       header .filters input[type="text"] {
         width: 260px; }
       header .filters input[type="checkbox"] {
@@ -30,7 +27,8 @@ html {
   html body {
     margin: 0;
     font-family: Helvetica, Arial, sans-serif;
-    height: 100%; }
+    height: 100%;
+    overflow: hidden; }
   html h1 {
     font-size: 28px; }
   html h2 {
@@ -40,8 +38,7 @@ html {
   html h4 {
     font-size: 14px; }
   html a {
-    text-decoration: none;
-    color: #0075bb; }
+    text-decoration: none; }
   html input[type="text"] {
     margin-right: 12px;
     border-radius: 2px;
@@ -49,25 +46,88 @@ html {
   html input[type="checkbox"] {
     font-size: 24px;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
+  html .disabled, html .disabled:hover {
+    color: #888 !important;
+    background-color: #eee !important;
+    cursor: default !important; }
   html .clear {
     clear: both; }
 
+.matter {
+  border-bottom: 1px solid #aaa;
+  padding: 16px; }
+  .matter:last-child {
+    border: none; }
+  .matter input[type="checkbox"] {
+    float: left; }
+  .matter .data {
+    float: left;
+    width: 260px;
+    margin-left: 6px; }
+    .matter .data .number {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 4px; }
+    .matter .data .status {
+      font-weight: bold;
+      color: #a00; }
+    .matter .data .description {
+      font-size: 13px;
+      line-height: 20px; }
+    .matter .data .number, .matter .data .description {
+      cursor: pointer;
+      color: #000;
+      transition: all .2s; }
+      .matter .data .number:hover, .matter .data .description:hover {
+        color: #1f5e9f; }
+  .matter .options {
+    background-image: url('../img/options.png');
+    background-color: #eee;
+    cursor: pointer;
+    float: right;
+    margin-right: 8px;
+    width: 18px;
+    height: 18px; }
+    .matter .options ul {
+      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
+      display: none;
+      margin-top: 18px;
+      position: absolute;
+      width: 236px;
+      z-index: 1; }
+      .matter .options ul.active {
+        display: block; }
+      .matter .options ul li {
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        color: #333;
+        padding: 12px;
+        transition: all .2s; }
+        .matter .options ul li:last-child {
+          border: none; }
+        .matter .options ul li:hover {
+          background-color: #4891dc;
+          color: #fff; }
+
 aside {
-  width: 380px;
   border-right: 1px solid gray;
-  height: 100%; }
-  aside .filter {
-    padding: 16px; }
+  float: left;
+  height: 100%;
+  width: 380px; }
   aside ul {
     list-style: none;
     padding: 0;
     margin: 0; }
-  aside .client h4 {
-    background-color: #ccc;
-    padding: 6px 20px;
-    margin: 0; }
-  aside .matter {
-    padding: 12px; }
+  aside .filter {
+    padding: 16px;
+    border-bottom: 1px solid #ccc; }
+  aside .list {
+    height: 100%;
+    overflow: auto; }
+    aside .list .client h4 {
+      background-color: #ddd;
+      padding: 8px 20px;
+      margin: 0; }
   aside .loading {
     background-image: url('../img/loading.gif');
     background-repeat: no-repeat;

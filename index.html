@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="build/main.css">
 </head>
 <body ng-app="mattersApp">
+
     <!-- Header -->
     <header>
         <h1>Matters</h1>
@@ -17,6 +18,8 @@
         </div>
         <div class="clear"></div>
     </header>
+    <!-- END Header -->
+
 
     <!-- Sidebar -->
     <aside ng-controller="SidebarController">
@@ -25,25 +28,48 @@
             <label for="select-all">Select all</label>
         </div>
 
-        <div class="loading" ng-class="{loading: !loaded}">
+        <div ng-position-options ng-list-height class="loading list" ng-class="{loading: !loaded}">
+
+            <!-- Clients -->
             <ul ng-if="clients">
-                <li class="client" ng-repeat="client in clients">
+                <li class="client clear" ng-repeat="client in clients">
                     <h4>{{client.client_name}}</h4>
+
+                    <!-- Matters -->
                     <ul>
-                        <li class="matter" ng-repeat="matter in client.matters">
-                            <div>{{matter.number}}</div>
+                        <li class="matter" ng-controller="MatterController" ng-repeat="matter in client.matters">
+                            <input type="checkbox">
+                            <div class="data">
+                                <div class="number">{{matter.number}}</div>
+                                <div class="status" ng-if="matter.status == 'closed'">Closed</div>
+                                <div class="description">{{matter.description}}</div>
+                            </div>
+                            <div class="options" ng-click="optionsClick()">
+                                <ul ng-class="{active: active}">
+                                    <li>Delete Matter</li>
+                                    <li ng-class="{disabled: matter.status == 'closed'}">Close Matter</li>
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
                         </li>
                     </ul>
+                    <!-- END Matters -->
+
                 </li>
             </ul>
+            <!-- END Clients -->
+
             <div class="error" ng-if="error">
                 No results found...
             </div>
         </div>
     </aside>
+    <!-- END Sidebar -->
+
 
     <!-- Main Content -->
     <section></section>
+    <!-- END Main Content -->
 
     <script src="build/main.js"></script>
 </body>

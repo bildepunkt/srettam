@@ -1,0 +1,55 @@
+.matter {
+  border-bottom: 1px solid #aaa;
+  padding: 16px; }
+  .matter:last-child {
+    border: none; }
+  .matter input[type="checkbox"] {
+    float: left; }
+  .matter .data {
+    float: left;
+    width: 260px;
+    margin-left: 6px; }
+    .matter .data .number {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 4px; }
+    .matter .data .status {
+      font-weight: bold;
+      color: #a00; }
+    .matter .data .description {
+      font-size: 13px;
+      line-height: 20px; }
+    .matter .data .number, .matter .data .description {
+      cursor: pointer;
+      color: #000;
+      transition: all .2s; }
+      .matter .data .number:hover, .matter .data .description:hover {
+        color: #1f5e9f; }
+  .matter .options {
+    background-image: url('../img/options.png');
+    background-color: #eee;
+    cursor: pointer;
+    float: right;
+    margin-right: 8px;
+    width: 18px;
+    height: 18px; }
+    .matter .options ul {
+      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
+      display: none;
+      margin-top: 18px;
+      position: absolute;
+      width: 236px;
+      z-index: 1; }
+      .matter .options ul.active {
+        display: block; }
+      .matter .options ul li {
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        color: #333;
+        padding: 12px;
+        transition: all .2s; }
+        .matter .options ul li:last-child {
+          border: none; }
+        .matter .options ul li:hover {
+          background-color: #4891dc;
+          color: #fff; }

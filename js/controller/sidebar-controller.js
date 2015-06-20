@@ -3,18 +3,19 @@
 var angular = require('angular');
 
 /**
- * @module SidebarController
+ * @controller SidebarController
  * @author Chris Peters
  */
-module.exports = function($scope, $http) {
+module.exports = function($scope, $http, mattersService) {
     /**
      * initialize module
      * @method init
      */
-    var init = function(url) {
+    this.init = function(url) {
         $http.get(url).
             success(function(data) {
-                $scope.clients = angular.fromJson(data);
+                mattersService.setClients(angular.fromJson(data));
+                $scope.clients = mattersService.getClients();
                 $scope.loaded = true;
             }).
             error(function(data, status) {
@@ -24,5 +25,5 @@ module.exports = function($scope, $http) {
             });
     };
 
-    init('data/matters.json');
+    this.init('data/matters.json');
 };

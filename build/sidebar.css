@@ -1,19 +1,22 @@
 aside {
-  width: 380px;
   border-right: 1px solid gray;
-  height: 100%; }
-  aside .filter {
-    padding: 16px; }
+  float: left;
+  height: 100%;
+  width: 380px; }
   aside ul {
     list-style: none;
     padding: 0;
     margin: 0; }
-  aside .client h4 {
-    background-color: #ccc;
-    padding: 6px 20px;
-    margin: 0; }
-  aside .matter {
-    padding: 12px; }
+  aside .filter {
+    padding: 16px;
+    border-bottom: 1px solid #ccc; }
+  aside .list {
+    height: 100%;
+    overflow: auto; }
+    aside .list .client h4 {
+      background-color: #ddd;
+      padding: 8px 20px;
+      margin: 0; }
   aside .loading {
     background-image: url('../img/loading.gif');
     background-repeat: no-repeat;
