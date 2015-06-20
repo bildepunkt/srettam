@@ -1,4 +1,7 @@
 
+section {
+  margin-left: 380px; }
+
 header {
   background-color: #fff;
   border-bottom: 1px solid gray;
@@ -61,9 +64,12 @@ html {
   .matter input[type="checkbox"] {
     float: left; }
   .matter .data {
+    color: #000;
+    cursor: pointer;
     float: left;
     width: 260px;
-    margin-left: 6px; }
+    margin-left: 6px;
+    transition: all .2s; }
     .matter .data .number {
       font-weight: bold;
       font-size: 14px;
@@ -74,12 +80,8 @@ html {
     .matter .data .description {
       font-size: 13px;
       line-height: 20px; }
-    .matter .data .number, .matter .data .description {
-      cursor: pointer;
-      color: #000;
-      transition: all .2s; }
-      .matter .data .number:hover, .matter .data .description:hover {
-        color: #1f5e9f; }
+    .matter .data:hover {
+      color: #1f5e9f; }
   .matter .options {
     background-image: url('../img/options.png');
     background-color: #eee;

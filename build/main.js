@@ -1,13 +1,34 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var angular = require('angular');
+
+/**
+ * displays clicked matter items
+ *
+ * @controller ContentController
+ * @author Chris Peters
+ */
+module.exports = function($scope, $rootScope) {
+
+    $rootScope.$on('matter:click', function(e, data) {
+        $scope.matter = data;
+    });
+};
+
+},{"angular":12}],2:[function(require,module,exports){
+'use strict';
+
 var app = require('angular').module('mattersApp');
 
-app.controller('SidebarController', require('./sidebar-controller'));
-app.controller('MatterController', require('./matter-controller'));
+/**
+ * register controllers
+ */
+app.controller('SidebarController', require('./sidebar'));
+app.controller('MatterController', require('./matter'));
+app.controller('ContentController', require('./content'));
 
-
-},{"./matter-controller":2,"./sidebar-controller":3,"angular":11}],2:[function(require,module,exports){
+},{"./content":1,"./matter":3,"./sidebar":4,"angular":12}],3:[function(require,module,exports){
 'use strict';
 
 var angular = require('angular');
@@ -18,7 +39,7 @@ var angular = require('angular');
  * @controller MatterController
  * @author Chris Peters
  */
-module.exports = function($scope) {
+module.exports = function($scope, $rootScope) {
     $scope.active = false;
 
     /**
@@ -30,12 +51,17 @@ module.exports = function($scope) {
         $scope.active = $scope.active ? false : true;
     };
 
-    $scope.$on('foo', function(data) {
-        console.log(data);
-    });
+    /**
+     * emits rootScope-level event with selected data
+     *
+     * @method contentClick
+     */
+    $scope.contentClick = function(matter) {
+        $rootScope.$emit('matter:click', matter);
+    };
 };
 
-},{"angular":11}],3:[function(require,module,exports){
+},{"angular":12}],4:[function(require,module,exports){
 'use strict';
 
 var angular = require('angular');
@@ -56,7 +82,7 @@ module.exports = function($scope, $http, mattersService) {
         $http.get(url).
             success(function(data) {
                 mattersService.setMatters(angular.fromJson(data));
-                $scope.clients = mattersService.getClients();
+                $scope.clients = mattersService.getMatters();
                 $scope.loaded = true;
             }).
             error(function(data, status) {
@@ -69,15 +95,18 @@ module.exports = function($scope, $http, mattersService) {
     init('data/matters.json');
 };
 
-},{"angular":11}],4:[function(require,module,exports){
+},{"angular":12}],5:[function(require,module,exports){
 'use strict';
 
 var app = require('angular').module('mattersApp');
 
+/**
+ * register directives
+ */
 app.directive('ngPositionOptions', require('./position-options'));
 app.directive('ngListHeight', require('./list-height'));
 
-},{"./list-height":5,"./position-options":6,"angular":11}],5:[function(require,module,exports){
+},{"./list-height":6,"./position-options":7,"angular":12}],6:[function(require,module,exports){
 'use strict';
 
 var jQuery = require('jquery');
@@ -107,7 +136,7 @@ module.exports = function($window) {
     };
 };
 
-},{"angular":11,"jquery":12}],6:[function(require,module,exports){
+},{"angular":12,"jquery":13}],7:[function(require,module,exports){
 'use strict';
 
 var jQuery = require('jquery');
@@ -140,15 +169,20 @@ module.exports = function() {
     };
 };
 
-},{"angular":11,"jquery":12}],7:[function(require,module,exports){
+},{"angular":12,"jquery":13}],8:[function(require,module,exports){
 'use strict';
 
-var jQuery = require('jquery');
-var $ = jQuery;
+var jQuery;
+var $ = jQuery = require('jquery');
 var angular = require('angular');
 
 /**
- * @module MattersApp
+ * Welcome to the Matters App!
+ * This web application allows users to browse, delete, and close client
+ * matters. It is also equipped with search and filtering cabibilities.
+ * Enjoy!!!
+ *
+ * @module mattersApp
  * @author Chris Peters
  */
 var app = angular.module('mattersApp', []);
@@ -157,14 +191,17 @@ require('./directive');
 require('./service')
 require('./controller');
 
-},{"./controller":1,"./directive":4,"./service":8,"angular":11,"jquery":12}],8:[function(require,module,exports){
+},{"./controller":2,"./directive":5,"./service":9,"angular":12,"jquery":13}],9:[function(require,module,exports){
 'use strict';
 
 var app = require('angular').module('mattersApp');
 
-app.factory('mattersService', require('./matters-service'));
+/**
+ * register services
+ */
+app.factory('mattersService', require('./matters'));
 
-},{"./matters-service":9,"angular":11}],9:[function(require,module,exports){
+},{"./matters":10,"angular":12}],10:[function(require,module,exports){
 'use strict';
 
 var angular = require('angular');
@@ -193,10 +230,16 @@ module.exports = function() {
          */
         getMatters: function() {
             return matters;
+        },
+
+        getById: function(id) {
+            angular.forEach(matters, function(matter) {
+                
+            });
         }
     };
 };
-},{"angular":11}],10:[function(require,module,exports){
+},{"angular":12}],11:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.16
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -26621,11 +26664,11 @@ var minlengthDirective = function() {
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":10}],12:[function(require,module,exports){
+},{"./angular":11}],13:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -35837,4 +35880,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[7])
+},{}]},{},[8])

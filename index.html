@@ -39,7 +39,7 @@
                     <ul>
                         <li class="matter" ng-controller="MatterController" ng-repeat="matter in client.matters">
                             <input type="checkbox">
-                            <div class="data">
+                            <div class="data" ng-click="contentClick(matter)">
                                 <div class="number">{{matter.number}}</div>
                                 <div class="status" ng-if="matter.status == 'closed'">Closed</div>
                                 <div class="description">{{matter.description}}</div>
@@ -68,7 +68,13 @@
 
 
     <!-- Main Content -->
-    <section></section>
+    <section ng-controller="ContentController">
+        <div class="content">
+            <div class="number">{{matter.number}}</div>
+            <div class="status" ng-if="matter.status == 'closed'">Closed</div>
+            <div class="description">{{matter.description}}</div>
+        </div>
+    </section>
     <!-- END Main Content -->
 
     <script src="build/main.js"></script>

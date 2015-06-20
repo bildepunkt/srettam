@@ -18,7 +18,7 @@ module.exports = function($scope, $http, mattersService) {
         $http.get(url).
             success(function(data) {
                 mattersService.setMatters(angular.fromJson(data));
-                $scope.clients = mattersService.getClients();
+                $scope.clients = mattersService.getMatters();
                 $scope.loaded = true;
             }).
             error(function(data, status) {

@@ -15,9 +15,12 @@ $options-size: 18px;
     }
 
     .data {
+        color: #000;
+        cursor: pointer;
         float: left;
         width: 260px;
         margin-left: 6px;
+        transition: all .2s;
 
         .number {
             font-weight: bold;
@@ -35,15 +38,8 @@ $options-size: 18px;
             line-height: 20px;
         }
 
-        .number,
-        .description {
-            cursor: pointer;
-            color: #000;
-            transition: all .2s;
-
-            &:hover {
-                color: darken($accent-col, 20%);
-            }
+        &:hover {
+            color: darken($accent-col, 20%);
         }
     }
 

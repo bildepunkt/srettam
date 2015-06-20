@@ -2,4 +2,7 @@
 
 var app = require('angular').module('mattersApp');
 
-app.factory('mattersService', require('./matters-service'));
+/**
+ * register services
+ */
+app.factory('mattersService', require('./matters'));

@@ -2,6 +2,9 @@
 
 var app = require('angular').module('mattersApp');
 
-app.controller('SidebarController', require('./sidebar-controller'));
-app.controller('MatterController', require('./matter-controller'));
-
+/**
+ * register controllers
+ */
+app.controller('SidebarController', require('./sidebar'));
+app.controller('MatterController', require('./matter'));
+app.controller('ContentController', require('./content'));

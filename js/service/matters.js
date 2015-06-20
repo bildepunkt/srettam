@@ -26,6 +26,12 @@ module.exports = function() {
          */
         getMatters: function() {
             return matters;
+        },
+
+        getById: function(id) {
+            angular.forEach(matters, function(matter) {
+                
+            });
         }
     };
 };

@@ -8,7 +8,7 @@ var angular = require('angular');
  * @controller MatterController
  * @author Chris Peters
  */
-module.exports = function($scope) {
+module.exports = function($scope, $rootScope) {
     $scope.active = false;
 
     /**
@@ -20,7 +20,12 @@ module.exports = function($scope) {
         $scope.active = $scope.active ? false : true;
     };
 
-    $scope.$on('foo', function(data) {
-        console.log(data);
-    });
+    /**
+     * emits rootScope-level event with selected data
+     *
+     * @method contentClick
+     */
+    $scope.contentClick = function(matter) {
+        $rootScope.$emit('matter:click', matter);
+    };
 };
