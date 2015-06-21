@@ -1,6 +1,25 @@
 
 section {
   margin-left: 380px; }
+  section .content {
+    padding: 32px;
+    font-weight: bold; }
+    section .content h3 {
+      display: inline-block;
+      font-size: 26px;
+      margin-top: 0; }
+    section .content .status {
+      color: #a00; }
+    section .content .description {
+      font-size: 16px;
+      line-height: 20px; }
+
+@font-face {
+  font-family: 'opensans_regular';
+  src: url('../font/opensans-regular-webfont.eot');
+  src: url('../font/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/opensans-regular-webfont.woff2') format('woff2'), url('../font/opensans-regular-webfont.woff') format('woff'), url('../font/opensans-regular-webfont.ttf') format('truetype'), url('../font/opensans-regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
 
 header {
   background-color: #fff;
@@ -29,7 +48,7 @@ html {
     display: block; }
   html body {
     margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: opensans_regular, Helvetica, Arial, sans-serif;
     height: 100%;
     overflow: hidden; }
   html h1 {
@@ -40,8 +59,6 @@ html {
     font-size: 18px; }
   html h4 {
     font-size: 14px; }
-  html a {
-    text-decoration: none; }
   html input[type="text"] {
     margin-right: 12px;
     border-radius: 2px;
@@ -49,6 +66,8 @@ html {
   html input[type="checkbox"] {
     font-size: 24px;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
+  html .ng-cloak {
+    display: none !important; }
   html .disabled, html .disabled:hover {
     color: #888 !important;
     background-color: #eee !important;

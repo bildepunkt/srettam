@@ -1,2 +1,14 @@
 section {
   margin-left: 380px; }
+  section .content {
+    padding: 32px;
+    font-weight: bold; }
+    section .content h3 {
+      display: inline-block;
+      font-size: 26px;
+      margin-top: 0; }
+    section .content .status {
+      color: #a00; }
+    section .content .description {
+      font-size: 16px;
+      line-height: 20px; }

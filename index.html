@@ -31,8 +31,8 @@
         <div ng-position-options ng-list-height class="loading list" ng-class="{loading: !loaded}">
 
             <!-- Clients -->
-            <ul ng-if="clients">
-                <li class="client clear" ng-repeat="client in clients">
+            <ul>
+                <li class="client clear ng-cloak" ng-repeat="client in clients">
                     <h4>{{client.client_name}}</h4>
 
                     <!-- Matters -->
@@ -69,11 +69,12 @@
 
     <!-- Main Content -->
     <section ng-controller="ContentController">
-        <div class="content">
-            <div class="number">{{matter.number}}</div>
-            <div class="status" ng-if="matter.status == 'closed'">Closed</div>
+        <article class="content ng-cloak">
+            <h3 class="number">{{matter.number}}
+                <span class="status" ng-if="matter.status == 'closed'">Closed</span>
+            </h3>
             <div class="description">{{matter.description}}</div>
-        </div>
+        </article>
     </section>
     <!-- END Main Content -->
 
