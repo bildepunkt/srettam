@@ -13,8 +13,11 @@ aside {
     }
 
     .filter {
-        padding: 16px;
         border-bottom: 1px solid #ccc;
+        padding: 16px;
+        position: relative;
+        z-index: 2;
+        background-color: $bg-col;
     }
 
     .list {

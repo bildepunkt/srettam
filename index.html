@@ -24,7 +24,7 @@
     <!-- Sidebar -->
     <aside ng-controller="SidebarController">
         <div class="filter">
-            <input id="select-all" type="checkbox">
+            <input id="select-all" type="checkbox" ng-model="allChecked" ng-change="checkAll()">
             <label for="select-all">Select all</label>
         </div>
 
@@ -38,14 +38,14 @@
                     <!-- Matters -->
                     <ul>
                         <li class="matter" ng-controller="MatterController" ng-repeat="matter in client.matters">
-                            <input type="checkbox">
+                            <input type="checkbox" ng-model="checked">
                             <div class="data" ng-click="contentClick(matter)">
                                 <div class="number">{{matter.number}}</div>
                                 <div class="status" ng-if="matter.status == 'closed'">Closed</div>
                                 <div class="description">{{matter.description}}</div>
                             </div>
                             <div class="options" ng-click="optionsClick()">
-                                <ul ng-class="{active: active}">
+                                <ul ng-class="{active: optionsActive}">
                                     <li>Delete Matter</li>
                                     <li ng-class="{disabled: matter.status == 'closed'}">Close Matter</li>
                                 </ul>

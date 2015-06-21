@@ -8,7 +8,12 @@ var angular = require('angular');
  * @controller SidebarController
  * @author Chris Peters
  */
-module.exports = function($scope, $http, mattersService) {
+module.exports = function($scope, $rootScope, $http, mattersService) {
+    $scope.allChecked = false;
+
+    $scope.checkAll = function() {
+        $rootScope.$emit('sidebar:checkall', $scope.allChecked);
+    };
 
     /**
      * @method init

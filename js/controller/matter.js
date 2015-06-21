@@ -9,7 +9,7 @@ var angular = require('angular');
  * @author Chris Peters
  */
 module.exports = function($scope, $rootScope) {
-    $scope.active = false;
+    $scope.optionsActive = false;
 
     /**
      * toggles a matter's options menu visibility
@@ -17,7 +17,11 @@ module.exports = function($scope, $rootScope) {
      * @method optionsClick
      */
     $scope.optionsClick = function() {
-        $scope.active = $scope.active ? false : true;
+        if (! $scope.optionsActive) {
+            $rootScope.$emit('matter:closeoptions')
+        }
+
+        $scope.optionsActive = $scope.optionsActive ? false : true;
     };
 
     /**
@@ -28,4 +32,25 @@ module.exports = function($scope, $rootScope) {
     $scope.contentClick = function(matter) {
         $rootScope.$emit('matter:click', matter);
     };
+
+    /**
+     * toggles checkbox check
+     *
+     * @method checkAllHandler
+     */
+    var checkAllHandler = function(e, data) {
+        $scope.checked = data;
+    };
+
+    /**
+     * closes all options menus when a menu becomes active
+     *
+     * @method closeOptionsHandler
+     */
+    var closeOptionsHandler = function(e, data) {
+        $scope.optionsActive = false;
+    };
+
+    $rootScope.$on('sidebar:checkall', checkAllHandler);
+    $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
