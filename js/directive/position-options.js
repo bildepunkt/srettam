@@ -28,10 +28,6 @@ module.exports = function() {
 
         $el.bind('scroll', listScrollHandler);
 
-        scope.$on('matter:deleteorclose', function() {
-            setTimeout(function() {
-                listScrollHandler();
-            }, 16);
-        });
+        scope.$on('matter:openoptions', listScrollHandler);
     };
 };

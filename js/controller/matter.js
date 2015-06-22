@@ -19,7 +19,8 @@ module.exports = function($scope, $rootScope, mattersService) {
      */
     $scope.optionsClick = function() {
         if (! $scope.optionsActive) {
-            $rootScope.$emit('matter:closeoptions')
+            $rootScope.$emit('matter:closeoptions');
+            $scope.$emit('matter:openoptions');
         }
 
         $scope.optionsActive = $scope.optionsActive ? false : true;
@@ -36,25 +37,21 @@ module.exports = function($scope, $rootScope, mattersService) {
 
     /**
      * removes hidden class on sidebar->matter AND content->matter via
-     * `$scope.matter`; and emit event to position options menu (b/c list
-     * height has changed)
+     * `$scope.matter`
      *
      * @method close
      */
     $scope.close = function() {
         $scope.matter.status = 'closed';
-        $scope.$emit('matter:deleteorclose');
     };
 
     /**
-     * remove item from `mattersService.matters` array; and emit event to
-     * position options menu (b/c list height has changed)
+     * remove item from `mattersService.matters` array
      *
      * @method close
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
-        $scope.$emit('matter:deleteorclose');
     };
 
     /**
