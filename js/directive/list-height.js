@@ -7,7 +7,7 @@ var angular = require('angular');
  * ensures that the list container's height is the difference between the
  * viewport and the header
  *
- * @directive listHeight
+ * @directive maListHeight
  * @author Chris Peters
  */
 module.exports = function($window) {

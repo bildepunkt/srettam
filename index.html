@@ -28,12 +28,17 @@
             <label for="select-all">Select all</label>
         </div>
 
-        <div ng-position-options ng-list-height class="loading list" ng-class="{loading: !loaded}">
+        <div ma-position-options ma-list-height class="loading list" ng-class="{loading: !loaded}">
 
             <!-- Clients -->
             <ul>
                 <li class="client clear ng-cloak" ng-repeat="client in clients">
-                    <h4>{{client.client_name}}</h4>
+                    <div class="header">
+                        <a href="{{client.avatar}}">
+                            <img class="avatar" width="32" height="32" src="{{client.avatar}}">
+                        </a>
+                        <h4>{{client.client_name}}</h4>
+                    </div>
 
                     <!-- Matters -->
                     <ul>

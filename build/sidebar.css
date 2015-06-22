@@ -17,10 +17,17 @@ aside {
     height: 100%;
     overflow: auto;
     border-right: 1px solid gray; }
-    aside .list .client h4 {
+    aside .list .client .header {
       background-color: #ddd;
+      border-bottom: 1px solid #fff;
       padding: 8px 20px;
       margin: 0; }
+      aside .list .client .header h4 {
+        margin: 8px 0;
+        float: right; }
+      aside .list .client .header .avatar {
+        border-radius: 32px;
+        margin-bottom: -4px; }
   aside .loading {
     background-image: url('../img/loading.gif');
     background-repeat: no-repeat;

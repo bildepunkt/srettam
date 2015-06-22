@@ -11,8 +11,12 @@ var angular = require('angular');
 module.exports = function($scope, $rootScope, $http, mattersService) {
     $scope.allChecked = false;
 
+    /**
+     * emit root level event to check all matters checkboxes
+     * @method checkAll
+     */
     $scope.checkAll = function() {
-        $rootScope.$emit('sidebar:checkall', $scope.allChecked);
+        $scope.$broadcast('sidebar:checkall', $scope.allChecked);
     };
 
     /**
@@ -29,7 +33,6 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
             error(function(data, status) {
                 $scope.error = true;
                 $scope.loaded = true;
-                return;
             });
     };
 

@@ -43,8 +43,8 @@ module.exports = function($scope, $rootScope, mattersService) {
     $scope.optionsActive = false;
 
     /**
-     * conditionally emits `matter:closeoptions` and toggles a
-     * matter's options menu visibility
+     * conditionally emits `matter:closeoptions` to ALL matters items and
+     * toggles a matter's options menu visibility
      *
      * @method optionsClick
      */
@@ -57,7 +57,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     };
 
     /**
-     * emits `rootScope`-level event with selected data
+     * emits rootScope-level event with selected data
      *
      * @method contentClick
      */
@@ -67,22 +67,25 @@ module.exports = function($scope, $rootScope, mattersService) {
 
     /**
      * removes hidden class on sidebar->matter AND content->matter via
-     * `$scope.matter`
+     * `$scope.matter`; and emit event to position options menu (b/c list
+     * height has changed)
      *
      * @method close
      */
     $scope.close = function() {
         $scope.matter.status = 'closed';
+        $scope.$emit('matter:deleteorclose');
     };
 
     /**
-     * removes hidden class on sidebar->matter AND content->matter via
-     * `$scope.matter`
+     * remove item from `mattersService.matters` array; and emit event to
+     * position options menu (b/c list height has changed)
      *
      * @method close
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
+        $scope.$emit('matter:deleteorclose');
     };
 
     /**
@@ -103,7 +106,7 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.optionsActive = false;
     };
 
-    $rootScope.$on('sidebar:checkall', checkAllHandler);
+    $scope.$on('sidebar:checkall', checkAllHandler);
     $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
 
@@ -121,8 +124,12 @@ var angular = require('angular');
 module.exports = function($scope, $rootScope, $http, mattersService) {
     $scope.allChecked = false;
 
+    /**
+     * emit root level event to check all matters checkboxes
+     * @method checkAll
+     */
     $scope.checkAll = function() {
-        $rootScope.$emit('sidebar:checkall', $scope.allChecked);
+        $scope.$broadcast('sidebar:checkall', $scope.allChecked);
     };
 
     /**
@@ -139,7 +146,6 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
             error(function(data, status) {
                 $scope.error = true;
                 $scope.loaded = true;
-                return;
             });
     };
 
@@ -154,8 +160,8 @@ var app = require('angular').module('mattersApp');
 /**
  * register directives
  */
-app.directive('ngPositionOptions', require('./position-options'));
-app.directive('ngListHeight', require('./list-height'));
+app.directive('maPositionOptions', require('./position-options'));
+app.directive('maListHeight', require('./list-height'));
 
 },{"./list-height":6,"./position-options":7,"angular":12}],6:[function(require,module,exports){
 'use strict';
@@ -167,7 +173,7 @@ var angular = require('angular');
  * ensures that the list container's height is the difference between the
  * viewport and the header
  *
- * @directive listHeight
+ * @directive maListHeight
  * @author Chris Peters
  */
 module.exports = function($window) {
@@ -196,7 +202,7 @@ var angular = require('angular')
 /**
  * offsets the options menu position based on list container's scroll top
  * 
- * @directive positionOptions
+ * @directive maPositionOptions
  * @author Chris Peters
  */
 module.exports = function() {
@@ -217,6 +223,12 @@ module.exports = function() {
         };
 
         $el.bind('scroll', listScrollHandler);
+
+        scope.$on('matter:deleteorclose', function() {
+            setTimeout(function() {
+                listScrollHandler();
+            }, 16);
+        });
     };
 };
 

@@ -26,10 +26,21 @@ aside {
         border-right: $module-border;
         
         .client {
-            h4 {
+            .header {
                 background-color: #ddd;
+                border-bottom: 1px solid #fff;
                 padding: 8px 20px;
                 margin: 0;
+
+                h4 {
+                    margin: 8px 0;
+                    float: right;
+                }
+
+                .avatar {
+                    border-radius: 32px;
+                    margin-bottom: -4px;
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 @import 'common';
 
-$options-size: 18px;
+$options-size: 24px;
 
 .matter {
     border-bottom: 1px solid #aaa;
@@ -54,9 +54,12 @@ $options-size: 18px;
         transition: all .2s;
 
         &.active {
-            background-position: 0 -18px;
+            background-position: 0 $options-size;
         }
 
+        /**
+         * ref: https://css-tricks.com/popping-hidden-overflow/
+         */
         ul {
             box-shadow: 0 4px 10px 2px rgba(0, 0, 0, .4);
             display: none;

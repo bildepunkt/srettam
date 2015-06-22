@@ -6,7 +6,7 @@ var angular = require('angular')
 /**
  * offsets the options menu position based on list container's scroll top
  * 
- * @directive positionOptions
+ * @directive maPositionOptions
  * @author Chris Peters
  */
 module.exports = function() {
@@ -27,5 +27,11 @@ module.exports = function() {
         };
 
         $el.bind('scroll', listScrollHandler);
+
+        scope.$on('matter:deleteorclose', function() {
+            setTimeout(function() {
+                listScrollHandler();
+            }, 16);
+        });
     };
 };

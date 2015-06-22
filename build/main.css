@@ -109,15 +109,18 @@ html {
     cursor: pointer;
     float: right;
     margin-right: 8px;
-    width: 18px;
-    height: 18px;
-    transition: all .2s; }
+    width: 24px;
+    height: 24px;
+    transition: all .2s;
+    /**
+         * ref: https://css-tricks.com/popping-hidden-overflow/
+         */ }
     .matter .options.active {
-      background-position: 0 -18px; }
+      background-position: 0 24px; }
     .matter .options ul {
       box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
       display: none;
-      margin-top: 18px;
+      margin-top: 24px;
       position: absolute;
       width: 236px;
       z-index: 1; }
@@ -154,10 +157,17 @@ aside {
     height: 100%;
     overflow: auto;
     border-right: 1px solid gray; }
-    aside .list .client h4 {
+    aside .list .client .header {
       background-color: #ddd;
+      border-bottom: 1px solid #fff;
       padding: 8px 20px;
       margin: 0; }
+      aside .list .client .header h4 {
+        margin: 8px 0;
+        float: right; }
+      aside .list .client .header .avatar {
+        border-radius: 32px;
+        margin-bottom: -4px; }
   aside .loading {
     background-image: url('../img/loading.gif');
     background-repeat: no-repeat;

@@ -12,8 +12,8 @@ module.exports = function($scope, $rootScope, mattersService) {
     $scope.optionsActive = false;
 
     /**
-     * conditionally emits `matter:closeoptions` and toggles a
-     * matter's options menu visibility
+     * conditionally emits `matter:closeoptions` to ALL matters items and
+     * toggles a matter's options menu visibility
      *
      * @method optionsClick
      */
@@ -26,7 +26,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     };
 
     /**
-     * emits `rootScope`-level event with selected data
+     * emits rootScope-level event with selected data
      *
      * @method contentClick
      */
@@ -36,22 +36,25 @@ module.exports = function($scope, $rootScope, mattersService) {
 
     /**
      * removes hidden class on sidebar->matter AND content->matter via
-     * `$scope.matter`
+     * `$scope.matter`; and emit event to position options menu (b/c list
+     * height has changed)
      *
      * @method close
      */
     $scope.close = function() {
         $scope.matter.status = 'closed';
+        $scope.$emit('matter:deleteorclose');
     };
 
     /**
-     * removes hidden class on sidebar->matter AND content->matter via
-     * `$scope.matter`
+     * remove item from `mattersService.matters` array; and emit event to
+     * position options menu (b/c list height has changed)
      *
      * @method close
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
+        $scope.$emit('matter:deleteorclose');
     };
 
     /**
@@ -72,6 +75,6 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.optionsActive = false;
     };
 
-    $rootScope.$on('sidebar:checkall', checkAllHandler);
+    $scope.$on('sidebar:checkall', checkAllHandler);
     $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
