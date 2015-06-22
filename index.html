@@ -44,7 +44,7 @@
                                 <div class="status" ng-if="matter.status == 'closed'">Closed</div>
                                 <div class="description">{{matter.description}}</div>
                             </div>
-                            <div class="options" ng-click="optionsClick()">
+                            <div class="options" ng-class="{active: optionsActive}" ng-click="optionsClick()">
                                 <ul ng-class="{active: optionsActive}">
                                     <li>Delete Matter</li>
                                     <li ng-class="{disabled: matter.status == 'closed'}">Close Matter</li>

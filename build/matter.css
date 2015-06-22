@@ -25,13 +25,16 @@
     .matter .data:hover {
       color: #1f5e9f; }
   .matter .options {
-    background-image: url('../img/options.png');
-    background-color: #eee;
+    background-image: url('../img/options-btn.png');
+    background-position: 0 0;
     cursor: pointer;
     float: right;
     margin-right: 8px;
     width: 18px;
-    height: 18px; }
+    height: 18px;
+    transition: all .2s; }
+    .matter .options.active {
+      background-position: 0 -18px; }
     .matter .options ul {
       box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
       display: none;

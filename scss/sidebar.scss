@@ -1,7 +1,6 @@
 @import 'common';
 
 aside {
-    border-right: $module-border;
     float: left;
     height: 100%;
     width: 380px;
@@ -14,6 +13,7 @@ aside {
 
     .filter {
         border-bottom: 1px solid #ccc;
+        border-right: $module-border;
         padding: 16px;
         position: relative;
         z-index: 2;
@@ -23,6 +23,7 @@ aside {
     .list {
         height: 100%;
         overflow: auto;
+        border-right: $module-border;
         
         .client {
             h4 {

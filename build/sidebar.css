@@ -1,5 +1,4 @@
 aside {
-  border-right: 1px solid gray;
   float: left;
   height: 100%;
   width: 380px; }
@@ -9,13 +8,15 @@ aside {
     margin: 0; }
   aside .filter {
     border-bottom: 1px solid #ccc;
+    border-right: 1px solid gray;
     padding: 16px;
     position: relative;
     z-index: 2;
     background-color: #fff; }
   aside .list {
     height: 100%;
-    overflow: auto; }
+    overflow: auto;
+    border-right: 1px solid gray; }
     aside .list .client h4 {
       background-color: #ddd;
       padding: 8px 20px;

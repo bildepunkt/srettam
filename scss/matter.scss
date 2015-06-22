@@ -44,13 +44,18 @@ $options-size: 18px;
     }
 
     .options {
-        background-image: url('../img/options.png');
-        background-color: #eee;
+        background-image: url('../img/options-btn.png');
+        background-position: 0 0;
         cursor: pointer;
         float: right;
         margin-right: 8px;
         width: $options-size;
         height: $options-size;
+        transition: all .2s;
+
+        &.active {
+            background-position: 0 -18px;
+        }
 
         ul {
             box-shadow: 0 4px 10px 2px rgba(0, 0, 0, .4);
