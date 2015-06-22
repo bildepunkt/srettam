@@ -11,9 +11,20 @@
     <header>
         <h1>Matters</h1>
         <div class="filters">
-            <input id="client-filter" type="text" placeholder="Filter by client...">
-            <input id="keyword-filter" type="text" placeholder="Filter by keyword...">
-            <input id="hide-closed" type="checkbox">
+            <input
+                id="client-filter"  
+                type="text"
+                ng-model="clientFilter"
+                placeholder="Filter by client...">
+            <input
+                id="keyword-filter" 
+                type="text"
+                ng-model="keywordFilter"
+                placeholder="Filter by keyword...">
+            <input
+                id="hide-closed"    
+                type="checkbox"
+                ng-model="hideClosed">
             <label for="hide-closed">Hide closed matters</label>
         </div>
         <div class="clear"></div>
@@ -24,35 +35,64 @@
     <!-- Sidebar -->
     <aside ng-controller="SidebarController">
         <div class="filter">
-            <input id="select-all" type="checkbox" ng-model="allChecked" ng-change="checkAll()">
+            <input
+                id="select-all"
+                type="checkbox"
+                ng-model="allChecked"
+                ng-change="checkAll()">
             <label for="select-all">Select all</label>
         </div>
 
-        <div ma-position-options ma-list-height class="loading list" ng-class="{loading: !loaded}">
+        <div
+            ma-position-options
+            ma-list-height
+            class="loading list"
+            ng-class="{loading: !loaded}">
 
             <!-- Clients -->
             <ul>
-                <li class="client clear ng-cloak" ng-repeat="client in clients">
+                <li
+                    class="client clear ng-cloak"
+                    ng-repeat="client in clients | filter:clientFilter">
                     <div class="header">
                         <a href="{{client.avatar}}">
-                            <img class="avatar" width="32" height="32" src="{{client.avatar}}">
+                            <img
+                                class="avatar"
+                                width="32"
+                                height="32"
+                                src="{{client.avatar}}">
                         </a>
                         <h4>{{client.client_name}}</h4>
                     </div>
 
                     <!-- Matters -->
                     <ul>
-                        <li class="matter" ng-controller="MatterController" ng-repeat="matter in client.matters">
-                            <input type="checkbox" ng-model="checked">
-                            <div class="data" ng-click="contentClick(matter)">
+                        <li
+                            class="matter"
+                            ng-class="{hidden: hideClosed && matter.status == 'closed'}"
+                            ng-controller="MatterController"
+                            ng-repeat="matter in client.matters | filter:keywordFilter">
+                            <input
+                                type="checkbox"
+                                ng-model="checked">
+                            <div
+                                class="data"
+                                ng-click="contentClick(matter)">
                                 <div class="number">{{matter.number}}</div>
-                                <div class="status" ng-class="{hidden: matter.status != 'closed'}">Closed</div>
+                                <div
+                                    class="status"
+                                    ng-class="{hidden: matter.status != 'closed'}">Closed</div>
                                 <div class="description">{{matter.description}}</div>
                             </div>
-                            <div class="options" ng-class="{active: optionsActive}" ng-click="optionsClick()">
+                            <div
+                                class="options"
+                                ng-class="{active: optionsActive}"
+                                ng-click="optionsClick()">
                                 <ul ng-class="{active: optionsActive}">
                                     <li ng-click="delete(matter.id)">Delete Matter</li>
-                                    <li ng-class="{disabled: matter.status == 'closed'}" ng-click="close()">Close Matter</li>
+                                    <li
+                                        ng-class="{disabled: matter.status == 'closed'}"
+                                        ng-click="close()">Close Matter</li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -76,7 +116,9 @@
     <section ng-controller="ContentController">
         <article class="content ng-cloak">
             <h3 class="number">{{matter.number}}
-                <span class="status" ng-class="{hidden: matter.status != 'closed'}">Closed</span>
+                <span
+                    class="status"
+                    ng-class="{hidden: matter.status != 'closed'}">Closed</span>
             </h3>
             <div class="description">{{matter.description}}</div>
         </article>

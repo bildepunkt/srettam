@@ -16,5 +16,5 @@ var angular = require('angular');
 var app = angular.module('mattersApp', []);
 
 require('./directive');
-require('./service')
+require('./service');
 require('./controller');

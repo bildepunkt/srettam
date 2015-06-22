@@ -125,7 +125,8 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
     $scope.allChecked = false;
 
     /**
-     * emit root level event to check all matters checkboxes
+     * emit root level event to check all matters checkboxes.
+     * $scope.allChecked is a boolean based on the selectAll checkbox's state.
      * @method checkAll
      */
     $scope.checkAll = function() {
@@ -251,7 +252,7 @@ var angular = require('angular');
 var app = angular.module('mattersApp', []);
 
 require('./directive');
-require('./service')
+require('./service');
 require('./controller');
 
 },{"./controller":2,"./directive":5,"./service":9,"angular":12,"jquery":13}],9:[function(require,module,exports){
