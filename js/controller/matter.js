@@ -8,11 +8,12 @@ var angular = require('angular');
  * @controller MatterController
  * @author Chris Peters
  */
-module.exports = function($scope, $rootScope) {
+module.exports = function($scope, $rootScope, mattersService) {
     $scope.optionsActive = false;
 
     /**
-     * toggles a matter's options menu visibility
+     * conditionally emits `matter:closeoptions` and toggles a
+     * matter's options menu visibility
      *
      * @method optionsClick
      */
@@ -25,12 +26,32 @@ module.exports = function($scope, $rootScope) {
     };
 
     /**
-     * emits rootScope-level event with selected data
+     * emits `rootScope`-level event with selected data
      *
      * @method contentClick
      */
     $scope.contentClick = function(matter) {
         $rootScope.$emit('matter:click', matter);
+    };
+
+    /**
+     * removes hidden class on sidebar->matter AND content->matter via
+     * `$scope.matter`
+     *
+     * @method close
+     */
+    $scope.close = function() {
+        $scope.matter.status = 'closed';
+    };
+
+    /**
+     * removes hidden class on sidebar->matter AND content->matter via
+     * `$scope.matter`
+     *
+     * @method close
+     */
+    $scope.delete = function(id) {
+        mattersService.removeItemById(parseInt(id, 10));
     };
 
     /**

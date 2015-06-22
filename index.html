@@ -41,13 +41,13 @@
                             <input type="checkbox" ng-model="checked">
                             <div class="data" ng-click="contentClick(matter)">
                                 <div class="number">{{matter.number}}</div>
-                                <div class="status" ng-if="matter.status == 'closed'">Closed</div>
+                                <div class="status" ng-class="{hidden: matter.status != 'closed'}">Closed</div>
                                 <div class="description">{{matter.description}}</div>
                             </div>
                             <div class="options" ng-class="{active: optionsActive}" ng-click="optionsClick()">
                                 <ul ng-class="{active: optionsActive}">
-                                    <li>Delete Matter</li>
-                                    <li ng-class="{disabled: matter.status == 'closed'}">Close Matter</li>
+                                    <li ng-click="delete(matter.id)">Delete Matter</li>
+                                    <li ng-class="{disabled: matter.status == 'closed'}" ng-click="close()">Close Matter</li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
@@ -71,7 +71,7 @@
     <section ng-controller="ContentController">
         <article class="content ng-cloak">
             <h3 class="number">{{matter.number}}
-                <span class="status" ng-if="matter.status == 'closed'">Closed</span>
+                <span class="status" ng-class="{hidden: matter.status != 'closed'}">Closed</span>
             </h3>
             <div class="description">{{matter.description}}</div>
         </article>

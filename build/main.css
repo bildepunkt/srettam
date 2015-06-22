@@ -68,6 +68,8 @@ html {
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }
   html .ng-cloak {
     display: none !important; }
+  html .hidden {
+    display: none !important; }
   html .disabled, html .disabled:hover {
     color: #888 !important;
     background-color: #eee !important;
