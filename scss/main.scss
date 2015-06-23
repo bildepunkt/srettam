@@ -23,6 +23,12 @@ html {
         &[type="text"] {
             border-radius: 2px;
             border: 1px solid #aaa;
+
+            &:focus {
+                border-color: $accent-col;
+                box-shadow: 0 0 2px 2px lighten($accent-col, 30%);
+                outline: none;
+            }
         }
 
         &[type="checkbox"] {
