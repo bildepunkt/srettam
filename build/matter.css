@@ -42,7 +42,7 @@
     .matter .options.active {
       background-position: 0 20px; }
     .matter .options ul {
-      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.2);
       display: none;
       margin-top: 20px;
       position: absolute;
