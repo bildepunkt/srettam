@@ -12,7 +12,7 @@ header {
     transition: all .4s;
 
     @media screen and (max-width: $sidebar-width),
-        screen and (orientation: landscape) {
+        handheld and (orientation: landscape) {
         padding: 0 12px 12px;
 
         h1 {
