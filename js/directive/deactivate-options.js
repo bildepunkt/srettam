@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * handlers interaction with the body
+ * deactivates all options menus on document click
  *
- * @directive maCloseOptions
+ * @directive maDeactivateOptions
  * @author Chris Peters
  */
 module.exports = function($document) {

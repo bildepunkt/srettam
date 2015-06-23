@@ -9,9 +9,16 @@
  */
 module.exports = function($scope, $rootScope) {
 
-    $rootScope.$on('matter:contentclick', function(e, data) {
+    /**
+     * injects clicked matter's data into scope
+     *
+     * @method contentClickHandler
+     */
+    var contentClickHandler = function(e, data) {
         $scope.matter = data;
-    });
+    };
+
+    $rootScope.$on('matter:contentclick', contentClickHandler);
 };
 
 },{}],2:[function(require,module,exports){
@@ -42,18 +49,25 @@ module.exports = function($scope, $rootScope, mattersService) {
      * conditionally emits `matter:closeoptions` to ALL matters items and
      * toggles a matter's options menu visibility
      *
-     * @method optionsClick
+     * @method $scope.optionsClick
      */
     $scope.optionsClick = function($event) {
         $event.stopPropagation();
 
         if (! $scope.optionsActive) {
+            $rootScope.$emit('matter:openoptions');
             $scope.$emit('matter:openoptions');
         }
 
         $scope.optionsActive = $scope.optionsActive ? false : true;
     };
 
+    /**
+     * used by deactivateOptions directive and on optionsClick to close
+     * all active options menus
+     *
+     * @method $scope.deactivate
+     */
     $scope.deactivate = function() {
         $scope.optionsActive = false;
     };
@@ -61,7 +75,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     /**
      * emits rootScope-level event with selected data
      *
-     * @method contentClick
+     * @method $scope.contentClick
      */
     $scope.contentClick = function(matter) {
         $rootScope.$emit('matter:contentclick', matter);
@@ -71,7 +85,7 @@ module.exports = function($scope, $rootScope, mattersService) {
      * removes hidden class on sidebar->matter AND content->matter via
      * `$scope.matter`
      *
-     * @method close
+     * @method $scope.close
      */
     $scope.close = function() {
         $scope.matter.status = 'closed';
@@ -80,7 +94,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     /**
      * remove item from `mattersService.matters` array
      *
-     * @method close
+     * @method $scope.delete
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
@@ -95,6 +109,7 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.checked = data;
     };
 
+    $rootScope.$on('matter:openoptions', $scope.deactivate);
     $scope.$on('sidebar:checkall', checkAllHandler);
 };
 
@@ -143,9 +158,9 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
 'use strict';
 
 /**
- * handlers interaction with the body
+ * deactivates all options menus on document click
  *
- * @directive maCloseOptions
+ * @directive maDeactivateOptions
  * @author Chris Peters
  */
 module.exports = function($document) {
@@ -208,9 +223,13 @@ var jQuery = require('jquery');
  * @directive maPositionOptions
  * @author Chris Peters
  */
-module.exports = function() {
+module.exports = function($window) {
     return function(scope, element, attrs) {
         var $el = jQuery(element),
+            $win = jQuery($window),
+            optionsWidth = 236,
+            $parent,
+            parentOffset,
             $optionMenus,
             $optionMenu;
 
@@ -221,7 +240,15 @@ module.exports = function() {
             $optionMenus = $optionMenus || $el.find('.options > ul');
             $optionMenus.each(function() {
                 $optionMenu = jQuery(this);
-                $optionMenu.css({ top: $optionMenu.parent().offset().top + 'px' });
+                $parent = $optionMenu.parent();
+                parentOffset = $parent.offset();
+
+                $optionMenu.css({
+                    top: parentOffset.top + 'px',
+                    left: $win.width() < $el.width() + optionsWidth ?
+                        parentOffset.left - optionsWidth + $parent.width() + 'px' :
+                        parentOffset.left + 'px'
+                });
             });
         };
 

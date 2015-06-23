@@ -8,9 +8,13 @@ var jQuery = require('jquery');
  * @directive maPositionOptions
  * @author Chris Peters
  */
-module.exports = function() {
+module.exports = function($window) {
     return function(scope, element, attrs) {
         var $el = jQuery(element),
+            $win = jQuery($window),
+            optionsWidth = 236,
+            $parent,
+            parentOffset,
             $optionMenus,
             $optionMenu;
 
@@ -21,7 +25,15 @@ module.exports = function() {
             $optionMenus = $optionMenus || $el.find('.options > ul');
             $optionMenus.each(function() {
                 $optionMenu = jQuery(this);
-                $optionMenu.css({ top: $optionMenu.parent().offset().top + 'px' });
+                $parent = $optionMenu.parent();
+                parentOffset = $parent.offset();
+
+                $optionMenu.css({
+                    top: parentOffset.top + 'px',
+                    left: $win.width() < $el.width() + optionsWidth ?
+                        parentOffset.left - optionsWidth + $parent.width() + 'px' :
+                        parentOffset.left + 'px'
+                });
             });
         };
 

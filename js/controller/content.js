@@ -8,7 +8,14 @@
  */
 module.exports = function($scope, $rootScope) {
 
-    $rootScope.$on('matter:contentclick', function(e, data) {
+    /**
+     * injects clicked matter's data into scope
+     *
+     * @method contentClickHandler
+     */
+    var contentClickHandler = function(e, data) {
         $scope.matter = data;
-    });
+    };
+
+    $rootScope.$on('matter:contentclick', contentClickHandler);
 };

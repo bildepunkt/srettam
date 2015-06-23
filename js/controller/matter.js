@@ -13,18 +13,25 @@ module.exports = function($scope, $rootScope, mattersService) {
      * conditionally emits `matter:closeoptions` to ALL matters items and
      * toggles a matter's options menu visibility
      *
-     * @method optionsClick
+     * @method $scope.optionsClick
      */
     $scope.optionsClick = function($event) {
         $event.stopPropagation();
 
         if (! $scope.optionsActive) {
+            $rootScope.$emit('matter:openoptions');
             $scope.$emit('matter:openoptions');
         }
 
         $scope.optionsActive = $scope.optionsActive ? false : true;
     };
 
+    /**
+     * used by deactivateOptions directive and on optionsClick to close
+     * all active options menus
+     *
+     * @method $scope.deactivate
+     */
     $scope.deactivate = function() {
         $scope.optionsActive = false;
     };
@@ -32,7 +39,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     /**
      * emits rootScope-level event with selected data
      *
-     * @method contentClick
+     * @method $scope.contentClick
      */
     $scope.contentClick = function(matter) {
         $rootScope.$emit('matter:contentclick', matter);
@@ -42,7 +49,7 @@ module.exports = function($scope, $rootScope, mattersService) {
      * removes hidden class on sidebar->matter AND content->matter via
      * `$scope.matter`
      *
-     * @method close
+     * @method $scope.close
      */
     $scope.close = function() {
         $scope.matter.status = 'closed';
@@ -51,7 +58,7 @@ module.exports = function($scope, $rootScope, mattersService) {
     /**
      * remove item from `mattersService.matters` array
      *
-     * @method close
+     * @method $scope.delete
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
@@ -66,5 +73,6 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.checked = data;
     };
 
+    $rootScope.$on('matter:openoptions', $scope.deactivate);
     $scope.$on('sidebar:checkall', checkAllHandler);
 };
