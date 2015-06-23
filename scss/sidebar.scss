@@ -1,24 +1,24 @@
 @import 'common';
 
-$width: 380px;
-
 aside {
     float: left;
     height: 100%;
-    width: $width;
-    margin-left: -$width;
-    transition: margin .4s;
+    width: $sidebar-width;
+    margin-left: -$sidebar-width;
+    transition: all .4s;
 
-    @media (max-width: $width) {
-
+    @media (max-width: $sidebar-width) {
+        width: $mobile-sidebar-width;
+        margin-left: -$mobile-sidebar-width;
     }
 
     &.active {
         margin-left: 0;
 
         .filter .sidebar-toggle {
-            margin: 0;
+            margin: -2px 4px 0 0;
             opacity: 1;
+            background-position: 0 0;
         }
     }
 
@@ -29,15 +29,17 @@ aside {
     }
 
     .filter {
+        background-color: $bg-col;
         border-bottom: 1px solid #ccc;
         border-right: $module-border;
+        font-size: 13px;
         padding: 16px;
         position: relative;
         z-index: 2;
-        background-color: $bg-col;
 
         .sidebar-toggle {
-            background-color: #ccc;
+            background-image: url('../img/sidebar-toggle.png');
+            background-position: 0 24px;
             border-radius: 24px;
             cursor: pointer;
             float: right;
@@ -46,6 +48,11 @@ aside {
             margin-right: -48px;
             width: 24px;
             transition: all .4s;
+
+            &:hover,
+            &:active {
+                opacity: 1;
+            }
         }
     }
 

@@ -3,6 +3,9 @@ section {
   transition: margin .4s; }
   section.sidebar-active {
     margin-left: 380px; }
+    @media (max-width: 380px) {
+      section.sidebar-active {
+        margin-left: 280px; } }
   section .content {
     padding: 32px;
     font-weight: bold; }

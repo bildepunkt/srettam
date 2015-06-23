@@ -12,6 +12,9 @@
     width: 260px;
     margin-left: 6px;
     transition: all .2s; }
+    @media (max-width: 380px) {
+      .matter .data {
+        width: 180px; } }
     .matter .data .number {
       font-weight: bold;
       font-size: 14px;

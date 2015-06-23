@@ -25,6 +25,15 @@ header {
             &[type="text"] {
                 width: 260px;
                 font-size: 14px;
+                transition: all .4s;
+
+                @media (max-width: $sidebar-width) {
+                    width: 200px;
+                }
+            }
+
+            &[type="checkbox"] {
+                margin-right: 6px;
             }
         }
 

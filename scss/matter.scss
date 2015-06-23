@@ -22,6 +22,10 @@ $options-size: 20px;
         margin-left: 6px;
         transition: all .2s;
 
+        @media (max-width: $sidebar-width) {
+            width: 180px;
+        }
+
         .number {
             font-weight: bold;
             font-size: 14px;

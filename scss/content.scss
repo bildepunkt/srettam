@@ -5,7 +5,11 @@ section {
     transition: margin .4s;
 
     &.sidebar-active {
-        margin-left: 380px;
+        margin-left: $sidebar-width;
+
+        @media (max-width: $sidebar-width) {
+            margin-left: $mobile-sidebar-width;
+        }
     }
 
     .content {
