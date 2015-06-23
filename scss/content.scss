@@ -1,7 +1,12 @@
 @import 'common';
 
 section {
-    margin-left: 380px;
+    margin-left: 8px;
+    transition: margin .4s;
+
+    &.sidebar-active {
+        margin-left: 380px;
+    }
 
     .content {
         padding: 32px;

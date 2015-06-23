@@ -8,6 +8,7 @@
  * @author Chris Peters
  */
 module.exports = function($scope, $rootScope) {
+    $scope.sidebarActive = true;
 
     /**
      * injects clicked matter's data into scope
@@ -18,7 +19,17 @@ module.exports = function($scope, $rootScope) {
         $scope.matter = data;
     };
 
+    /**
+     * applies class to match sidebar's margin on active toggle
+     *
+     * @method sidebarToggleHandler
+     */
+    var sidebarToggleHandler = function(e, data) {
+        $scope.sidebarActive = data;
+    };
+
     $rootScope.$on('matter:contentclick', contentClickHandler);
+    $rootScope.$on('sidebar:toggle', sidebarToggleHandler);
 };
 
 },{}],2:[function(require,module,exports){
@@ -55,7 +66,13 @@ module.exports = function($scope, $rootScope, mattersService) {
         $event.stopPropagation();
 
         if (! $scope.optionsActive) {
+            /**
+             * @listener MatterController
+             */
             $rootScope.$emit('matter:openoptions');
+            /**
+             * @listener maPositionOptions
+             */
             $scope.$emit('matter:openoptions');
         }
 
@@ -123,15 +140,33 @@ module.exports = function($scope, $rootScope, mattersService) {
  * @author Chris Peters
  */
 module.exports = function($scope, $rootScope, $http, mattersService) {
+    $scope.active = true;
     $scope.allChecked = false;
 
     /**
      * emit root level event to check all matters checkboxes.
      * $scope.allChecked is a boolean based on the selectAll checkbox's state.
+     *
      * @method checkAll
      */
     $scope.checkAll = function() {
+        /**
+         * @listener MatterController
+         */
         $scope.$broadcast('sidebar:checkall', $scope.allChecked);
+    };
+
+    /**
+     * toggles sidebar visibility
+     *
+     * @method sidebarToggle
+     */
+    $scope.sidebarToggle = function() {
+        $scope.active = $scope.active ? false : true;
+        /**
+         * @listener ContentController
+         */
+        $rootScope.$emit('sidebar:toggle', $scope.active);
     };
 
     /**
@@ -228,8 +263,8 @@ module.exports = function($window) {
         var $el = jQuery(element),
             $win = jQuery($window),
             optionsWidth = 236,
-            $parent,
             parentOffset,
+            $parent,
             $optionMenus,
             $optionMenu;
 

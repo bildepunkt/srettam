@@ -13,8 +13,8 @@ module.exports = function($window) {
         var $el = jQuery(element),
             $win = jQuery($window),
             optionsWidth = 236,
-            $parent,
             parentOffset,
+            $parent,
             $optionMenus,
             $optionMenu;
 

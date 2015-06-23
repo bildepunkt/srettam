@@ -1,5 +1,8 @@
 section {
-  margin-left: 380px; }
+  margin-left: 8px;
+  transition: margin .4s; }
+  section.sidebar-active {
+    margin-left: 380px; }
   section .content {
     padding: 32px;
     font-weight: bold; }

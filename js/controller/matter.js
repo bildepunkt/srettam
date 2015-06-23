@@ -19,7 +19,13 @@ module.exports = function($scope, $rootScope, mattersService) {
         $event.stopPropagation();
 
         if (! $scope.optionsActive) {
+            /**
+             * @listener MatterController
+             */
             $rootScope.$emit('matter:openoptions');
+            /**
+             * @listener maPositionOptions
+             */
             $scope.$emit('matter:openoptions');
         }
 

@@ -1,6 +1,9 @@
 
 section {
-  margin-left: 380px; }
+  margin-left: 8px;
+  transition: margin .4s; }
+  section.sidebar-active {
+    margin-left: 380px; }
   section .content {
     padding: 32px;
     font-weight: bold; }
@@ -120,7 +123,7 @@ html {
     background-position: 0 0;
     cursor: pointer;
     float: right;
-    margin-right: 8px;
+    margin-right: 4px;
     width: 20px;
     height: 20px;
     transition: all .2s;
@@ -153,7 +156,14 @@ html {
 aside {
   float: left;
   height: 100%;
-  width: 380px; }
+  width: 380px;
+  margin-left: -380px;
+  transition: margin .4s; }
+  aside.active {
+    margin-left: 0; }
+    aside.active .filter .sidebar-toggle {
+      margin: 0;
+      opacity: 1; }
   aside ul {
     list-style: none;
     padding: 0;
@@ -165,6 +175,16 @@ aside {
     position: relative;
     z-index: 2;
     background-color: #fff; }
+    aside .filter .sidebar-toggle {
+      background-color: #ccc;
+      border-radius: 24px;
+      cursor: pointer;
+      float: right;
+      height: 24px;
+      opacity: .5;
+      margin-right: -48px;
+      width: 24px;
+      transition: all .4s; }
   aside .list {
     height: 100%;
     overflow: auto;

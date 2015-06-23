@@ -43,7 +43,10 @@
 
 
     <!-- Sidebar -->
-    <aside ng-controller="SidebarController">
+    <aside
+        ng-controller="SidebarController"
+        class="active"
+        ng-class="{active: active}">
         <div class="filter">
             <input
                 id="select-all"
@@ -51,6 +54,10 @@
                 ng-model="allChecked"
                 ng-change="checkAll()">
             <label for="select-all">Select all</label>
+
+            <div
+                class="sidebar-toggle"
+                ng-click="sidebarToggle()"></div>
         </div>
 
         <div
@@ -124,7 +131,10 @@
 
 
     <!-- Main Content -->
-    <section ng-controller="ContentController">
+    <section
+        ng-controller="ContentController"
+        class="sidebar-active"
+        ng-class="{'sidebar-active': sidebarActive}">
         <article class="content ng-cloak">
             <h3 class="number">{{matter.number}}
                 <span
