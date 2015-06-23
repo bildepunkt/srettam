@@ -78,6 +78,7 @@
                     <!-- Matters -->
                     <ul>
                         <li
+                            ma-deactivate-options
                             class="matter"
                             ng-class="{hidden: hideClosed && matter.status == 'closed'}"
                             ng-controller="MatterController"
@@ -97,7 +98,7 @@
                             <div
                                 class="options"
                                 ng-class="{active: optionsActive}"
-                                ng-click="optionsClick()">
+                                ng-click="optionsClick($event)">
                                 <ul ng-class="{active: optionsActive}">
                                     <li ng-click="delete(matter.id)">Delete Matter</li>
                                     <li

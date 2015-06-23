@@ -26,7 +26,7 @@ app.controller('SidebarController', require('./sidebar'));
 app.controller('MatterController', require('./matter'));
 app.controller('ContentController', require('./content'));
 
-},{"./content":1,"./matter":3,"./sidebar":4,"angular":12}],3:[function(require,module,exports){
+},{"./content":1,"./matter":3,"./sidebar":4,"angular":13}],3:[function(require,module,exports){
 'use strict';
 
 /**
@@ -44,13 +44,18 @@ module.exports = function($scope, $rootScope, mattersService) {
      *
      * @method optionsClick
      */
-    $scope.optionsClick = function() {
+    $scope.optionsClick = function($event) {
+        $event.stopPropagation();
+
         if (! $scope.optionsActive) {
-            $rootScope.$emit('matter:closeoptions');
             $scope.$emit('matter:openoptions');
         }
 
         $scope.optionsActive = $scope.optionsActive ? false : true;
+    };
+
+    $scope.deactivate = function() {
+        $scope.optionsActive = false;
     };
 
     /**
@@ -90,17 +95,7 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.checked = data;
     };
 
-    /**
-     * closes all options menus when a menu becomes active
-     *
-     * @method closeOptionsHandler
-     */
-    var closeOptionsHandler = function(e, data) {
-        $scope.optionsActive = false;
-    };
-
     $scope.$on('sidebar:checkall', checkAllHandler);
-    $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
 
 },{}],4:[function(require,module,exports){
@@ -147,15 +142,33 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
 },{}],5:[function(require,module,exports){
 'use strict';
 
+/**
+ * handlers interaction with the body
+ *
+ * @directive maCloseOptions
+ * @author Chris Peters
+ */
+module.exports = function($document) {
+    return function(scope, element, attrs) {
+        $document.bind('click', function() {
+            scope.$apply(scope.deactivate);
+        });
+    };
+};
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
 var app = require('angular').module('mattersApp');
 
 /**
  * register directives
  */
+app.directive('maDeactivateOptions', require('./deactivate-options'));
 app.directive('maPositionOptions', require('./position-options'));
 app.directive('maListHeight', require('./list-height'));
 
-},{"./list-height":6,"./position-options":7,"angular":12}],6:[function(require,module,exports){
+},{"./deactivate-options":5,"./list-height":7,"./position-options":8,"angular":13}],7:[function(require,module,exports){
 'use strict';
 
 var jQuery = require('jquery');
@@ -184,7 +197,7 @@ module.exports = function($window) {
     };
 };
 
-},{"jquery":13}],7:[function(require,module,exports){
+},{"jquery":14}],8:[function(require,module,exports){
 'use strict';
 
 var jQuery = require('jquery');
@@ -218,7 +231,7 @@ module.exports = function() {
     };
 };
 
-},{"jquery":13}],8:[function(require,module,exports){
+},{"jquery":14}],9:[function(require,module,exports){
 'use strict';
 
 var jQuery;
@@ -240,7 +253,7 @@ require('./directive');
 require('./service');
 require('./controller');
 
-},{"./controller":2,"./directive":5,"./service":9,"angular":12,"jquery":13}],9:[function(require,module,exports){
+},{"./controller":2,"./directive":6,"./service":10,"angular":13,"jquery":14}],10:[function(require,module,exports){
 'use strict';
 
 var app = require('angular').module('mattersApp');
@@ -250,7 +263,7 @@ var app = require('angular').module('mattersApp');
  */
 app.factory('mattersService', require('./matters'));
 
-},{"./matters":10,"angular":12}],10:[function(require,module,exports){
+},{"./matters":11,"angular":13}],11:[function(require,module,exports){
 'use strict';
 
 var angular = require('angular');
@@ -324,7 +337,7 @@ module.exports = function() {
         }
     };
 };
-},{"angular":12}],11:[function(require,module,exports){
+},{"angular":13}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.16
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -26749,11 +26762,11 @@ var minlengthDirective = function() {
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":11}],13:[function(require,module,exports){
+},{"./angular":12}],14:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -35965,4 +35978,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[8])
+},{}]},{},[9])

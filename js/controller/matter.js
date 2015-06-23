@@ -15,13 +15,18 @@ module.exports = function($scope, $rootScope, mattersService) {
      *
      * @method optionsClick
      */
-    $scope.optionsClick = function() {
+    $scope.optionsClick = function($event) {
+        $event.stopPropagation();
+
         if (! $scope.optionsActive) {
-            $rootScope.$emit('matter:closeoptions');
             $scope.$emit('matter:openoptions');
         }
 
         $scope.optionsActive = $scope.optionsActive ? false : true;
+    };
+
+    $scope.deactivate = function() {
+        $scope.optionsActive = false;
     };
 
     /**
@@ -61,15 +66,5 @@ module.exports = function($scope, $rootScope, mattersService) {
         $scope.checked = data;
     };
 
-    /**
-     * closes all options menus when a menu becomes active
-     *
-     * @method closeOptionsHandler
-     */
-    var closeOptionsHandler = function(e, data) {
-        $scope.optionsActive = false;
-    };
-
     $scope.$on('sidebar:checkall', checkAllHandler);
-    $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
