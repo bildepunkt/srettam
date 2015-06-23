@@ -1,7 +1,6 @@
 'use strict';
 
 var jQuery = require('jquery');
-var angular = require('angular')
 
 /**
  * offsets the options menu position based on list container's scroll top

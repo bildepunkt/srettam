@@ -11,21 +11,31 @@
     <header>
         <h1>Matters</h1>
         <div class="filters">
-            <input
-                id="client-filter"  
-                type="text"
-                ng-model="clientFilter"
-                placeholder="Filter by client...">
-            <input
-                id="keyword-filter" 
-                type="text"
-                ng-model="keywordFilter"
-                placeholder="Filter by keyword...">
-            <input
-                id="hide-closed"    
-                type="checkbox"
-                ng-model="hideClosed">
-            <label for="hide-closed">Hide closed matters</label>
+            <span class="filter-text">
+                <input
+                    id="client-filter"
+                    type="text"
+                    ng-model="clientFilter"
+                    placeholder="Filter by client...">
+                <span class="filter-btn client"></span>
+            </span>
+            <span class="filter-text">
+                <input
+                    id="keyword-filter" 
+                    type="text"
+                    ng-model="keywordFilter"
+                    placeholder="Filter by keyword...">
+                <span class="filter-btn keyword"></span>
+            </span>
+            <span class="hide-closed">
+                <label>
+                    <input
+                        id="hide-closed"    
+                        type="checkbox"
+                        ng-model="hideClosed">
+                    Hide closed matters
+                </label>
+            </span>
         </div>
         <div class="clear"></div>
     </header>

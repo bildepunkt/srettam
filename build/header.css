@@ -1,20 +1,33 @@
 header {
   background-color: #fff;
   border-bottom: 1px solid gray;
-  padding: 30px;
+  padding: 0 30px 30px;
   position: relative;
   z-index: 2; }
   header h1 {
-    margin: 0 30px 0 0;
+    margin: 30px 30px 0 0;
     float: left; }
   header .filters {
     float: left;
-    margin-top: 2px; }
+    margin-top: 4px; }
     header .filters input {
-      padding: 8px; }
+      padding: 8px;
+      margin: 30px 0 0 0; }
       header .filters input[type="text"] {
-        width: 260px; }
-      header .filters input[type="checkbox"] {
-        margin-left: 12px; }
+        width: 260px;
+        font-size: 14px; }
+    header .filters .filter-text {
+      white-space: nowrap;
+      display: inline-block; }
+    header .filters .filter-btn {
+      background-image: url('../img/filters.png');
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin: 0 24px -3px -30px; }
+      header .filters .filter-btn.client {
+        background-position: 0 16px; }
     header .filters label {
-      font-size: 12px; }
+      font-size: 12px;
+      white-space: nowrap;
+      display: inline-block; }

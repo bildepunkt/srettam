@@ -1,8 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var angular = require('angular');
-
 /**
  * displays clicked matter items
  *
@@ -11,12 +9,12 @@ var angular = require('angular');
  */
 module.exports = function($scope, $rootScope) {
 
-    $rootScope.$on('matter:click', function(e, data) {
+    $rootScope.$on('matter:contentclick', function(e, data) {
         $scope.matter = data;
     });
 };
 
-},{"angular":12}],2:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 var app = require('angular').module('mattersApp');
@@ -30,8 +28,6 @@ app.controller('ContentController', require('./content'));
 
 },{"./content":1,"./matter":3,"./sidebar":4,"angular":12}],3:[function(require,module,exports){
 'use strict';
-
-var angular = require('angular');
 
 /**
  * handles user interaction with matter items
@@ -63,7 +59,7 @@ module.exports = function($scope, $rootScope, mattersService) {
      * @method contentClick
      */
     $scope.contentClick = function(matter) {
-        $rootScope.$emit('matter:click', matter);
+        $rootScope.$emit('matter:contentclick', matter);
     };
 
     /**
@@ -107,10 +103,8 @@ module.exports = function($scope, $rootScope, mattersService) {
     $rootScope.$on('matter:closeoptions', closeOptionsHandler);
 };
 
-},{"angular":12}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
-
-var angular = require('angular');
 
 /**
  * fetches and gives matters data to mattersService
@@ -150,7 +144,7 @@ module.exports = function($scope, $rootScope, $http, mattersService) {
     init('data/matters.json');
 };
 
-},{"angular":12}],5:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var app = require('angular').module('mattersApp');
@@ -165,7 +159,6 @@ app.directive('maListHeight', require('./list-height'));
 'use strict';
 
 var jQuery = require('jquery');
-var angular = require('angular');
 
 /**
  * ensures that the list container's height is the difference between the
@@ -183,7 +176,7 @@ module.exports = function($window) {
          * @method windowResizeHandler
          */
         var windowResizeHandler = function() {
-            $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' })
+            $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' });
         };
 
         $win.bind('resize', windowResizeHandler);
@@ -191,11 +184,10 @@ module.exports = function($window) {
     };
 };
 
-},{"angular":12,"jquery":13}],7:[function(require,module,exports){
+},{"jquery":13}],7:[function(require,module,exports){
 'use strict';
 
 var jQuery = require('jquery');
-var angular = require('angular')
 
 /**
  * offsets the options menu position based on list container's scroll top
@@ -226,7 +218,7 @@ module.exports = function() {
     };
 };
 
-},{"angular":12,"jquery":13}],8:[function(require,module,exports){
+},{"jquery":13}],8:[function(require,module,exports){
 'use strict';
 
 var jQuery;

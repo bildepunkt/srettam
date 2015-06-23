@@ -1,7 +1,5 @@
 'use strict';
 
-var angular = require('angular');
-
 /**
  * handles user interaction with matter items
  *
@@ -32,7 +30,7 @@ module.exports = function($scope, $rootScope, mattersService) {
      * @method contentClick
      */
     $scope.contentClick = function(matter) {
-        $rootScope.$emit('matter:click', matter);
+        $rootScope.$emit('matter:contentclick', matter);
     };
 
     /**

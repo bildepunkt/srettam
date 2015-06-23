@@ -1,7 +1,5 @@
 'use strict';
 
-var angular = require('angular');
-
 /**
  * displays clicked matter items
  *
@@ -10,7 +8,7 @@ var angular = require('angular');
  */
 module.exports = function($scope, $rootScope) {
 
-    $rootScope.$on('matter:click', function(e, data) {
+    $rootScope.$on('matter:contentclick', function(e, data) {
         $scope.matter = data;
     });
 };

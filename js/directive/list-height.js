@@ -1,7 +1,6 @@
 'use strict';
 
 var jQuery = require('jquery');
-var angular = require('angular');
 
 /**
  * ensures that the list container's height is the difference between the
@@ -19,7 +18,7 @@ module.exports = function($window) {
          * @method windowResizeHandler
          */
         var windowResizeHandler = function() {
-            $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' })
+            $el.css({ height: (jQuery(this).height() - $el.offset().top) + 'px' });
         };
 
         $win.bind('resize', windowResizeHandler);
