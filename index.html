@@ -96,6 +96,7 @@
                                 ng-model="checked">
                             <div
                                 class="data"
+                                ng-class="{'content-active': contentActive}"
                                 ng-click="contentClick(matter)">
                                 <div class="number">{{matter.number}}</div>
                                 <div

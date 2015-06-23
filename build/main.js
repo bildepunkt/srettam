@@ -54,6 +54,7 @@ app.controller('ContentController', require('./content'));
  * @author Chris Peters
  */
 module.exports = function($scope, $rootScope, mattersService) {
+    $scope.contentActive = false;
     $scope.optionsActive = false;
 
     /**
@@ -61,6 +62,7 @@ module.exports = function($scope, $rootScope, mattersService) {
      * toggles a matter's options menu visibility
      *
      * @method $scope.optionsClick
+     * @param {object} $event
      */
     $scope.optionsClick = function($event) {
         $event.stopPropagation();
@@ -93,9 +95,15 @@ module.exports = function($scope, $rootScope, mattersService) {
      * emits rootScope-level event with selected data
      *
      * @method $scope.contentClick
+     * @param {object} matter - the matter data
      */
     $scope.contentClick = function(matter) {
+        /**
+         * @listener ContentController
+         * @listener MatterController
+         */
         $rootScope.$emit('matter:contentclick', matter);
+        $scope.contentActive = true;
     };
 
     /**
@@ -112,21 +120,34 @@ module.exports = function($scope, $rootScope, mattersService) {
      * remove item from `mattersService.matters` array
      *
      * @method $scope.delete
+     * @param {string} id - the id of the matter to delete
      */
     $scope.delete = function(id) {
         mattersService.removeItemById(parseInt(id, 10));
     };
 
     /**
+     * toggles content's active class
+     *
+     * @method contentDeactivate
+     */
+    var contentDeactivate = function() {
+        $scope.contentActive = false;
+    };
+
+    /**
      * toggles checkbox check
      *
      * @method checkAllHandler
+     * @param {object} e - dom event
+     * @param {boolean} data - checked toggle
      */
     var checkAllHandler = function(e, data) {
         $scope.checked = data;
     };
 
     $rootScope.$on('matter:openoptions', $scope.deactivate);
+    $rootScope.$on('matter:contentclick', contentDeactivate);
     $scope.$on('sidebar:checkall', checkAllHandler);
 };
 

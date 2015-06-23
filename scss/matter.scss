@@ -26,6 +26,10 @@ $options-size: 20px;
             width: 180px;
         }
 
+        &.content-active {
+            color: darken($accent-col, 20%);
+        }
+
         .number {
             font-weight: bold;
             font-size: 14px;
@@ -40,10 +44,6 @@ $options-size: 20px;
         .description {
             font-size: 13px;
             line-height: 20px;
-        }
-
-        &:hover {
-            color: darken($accent-col, 20%);
         }
     }
 

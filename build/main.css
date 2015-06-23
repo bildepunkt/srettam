@@ -118,6 +118,8 @@ html {
     @media (max-width: 380px) {
       .matter .data {
         width: 180px; } }
+    .matter .data.content-active {
+      color: #1f5e9f; }
     .matter .data .number {
       font-weight: bold;
       font-size: 14px;
@@ -128,8 +130,6 @@ html {
     .matter .data .description {
       font-size: 13px;
       line-height: 20px; }
-    .matter .data:hover {
-      color: #1f5e9f; }
   .matter .options {
     background-image: url('../img/options-btn.png');
     background-position: 0 0;
