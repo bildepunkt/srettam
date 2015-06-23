@@ -47,13 +47,8 @@ aside {
             height: 24px;
             opacity: .5;
             margin-right: -48px;
-            width: 24px;
+            width: 24px; 
             transition: all .4s;
-
-            &:hover,
-            &:active {
-                opacity: 1;
-            }
         }
     }
 

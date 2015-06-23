@@ -3,7 +3,17 @@ header {
   border-bottom: 1px solid gray;
   padding: 0 30px 30px;
   position: relative;
-  z-index: 2; }
+  z-index: 2;
+  transition: all .4s; }
+  @media (max-width: 380px) {
+    header {
+      padding: 0 12px 12px; }
+      header h1 {
+        margin: 12px 30px 0 0 !important; }
+      header .filters input {
+        margin-top: 12px !important; }
+        header .filters input[type="text"] {
+          width: 240px !important; } }
   header h1 {
     margin: 30px 30px 0 0;
     float: left; }
@@ -17,9 +27,6 @@ header {
         width: 260px;
         font-size: 14px;
         transition: all .4s; }
-        @media (max-width: 380px) {
-          header .filters input[type="text"] {
-            width: 200px; } }
       header .filters input[type="checkbox"] {
         margin-right: 6px; }
     header .filters .filter-text {

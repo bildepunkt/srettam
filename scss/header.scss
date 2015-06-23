@@ -1,6 +1,7 @@
 @import 'common';
 
 $margin-top: 30px;
+$mobile-margin-top: 12px;
 
 header {
     background-color: $bg-col;
@@ -8,6 +9,25 @@ header {
     padding: 0 30px 30px;
     position: relative;
     z-index: 2;
+    transition: all .4s;
+
+    @media (max-width: $sidebar-width) {
+        padding: 0 12px 12px;
+
+        h1 {
+            margin: $mobile-margin-top 30px 0 0 !important;
+        }
+
+        .filters {
+            input {
+                margin-top: $mobile-margin-top !important;
+
+                &[type="text"] {
+                    width: 240px !important;
+                }
+            }
+        }
+    }
 
     h1 {
         margin: $margin-top 30px 0 0;
@@ -26,10 +46,6 @@ header {
                 width: 260px;
                 font-size: 14px;
                 transition: all .4s;
-
-                @media (max-width: $sidebar-width) {
-                    width: 200px;
-                }
             }
 
             &[type="checkbox"] {

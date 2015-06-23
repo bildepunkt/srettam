@@ -38,8 +38,6 @@ aside {
       margin-right: -48px;
       width: 24px;
       transition: all .4s; }
-      aside .filter .sidebar-toggle:hover, aside .filter .sidebar-toggle:active {
-        opacity: 1; }
   aside .list {
     height: 100%;
     overflow: auto;
