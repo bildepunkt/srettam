@@ -11,18 +11,20 @@ var jQuery = require('jquery');
 module.exports = function($window) {
     return function(scope, element, attrs) {
         var $el = jQuery(element),
-            $win = jQuery($window),
-            optionsWidth = 236,
-            parentOffset,
-            $parent,
-            $optionMenus,
-            $optionMenu;
+            $win = jQuery($window);
 
         /**
+         * aligns options menu to parent (options btn)
+         *
          * @method listScrollHandler
          */
         var listScrollHandler = function() {
-            $optionMenus = $optionMenus || $el.find('.options > ul');
+            var $optionMenus = $el.find('.options > ul'),
+                optionsWidth = 236,
+                parentOffset,
+                $parent,
+                $optionMenu;
+
             $optionMenus.each(function() {
                 $optionMenu = jQuery(this);
                 $parent = $optionMenu.parent();
@@ -38,6 +40,7 @@ module.exports = function($window) {
         };
 
         $el.bind('scroll', listScrollHandler);
+        $el.trigger('scroll');
 
         scope.$on('matter:openoptions', listScrollHandler);
     };
