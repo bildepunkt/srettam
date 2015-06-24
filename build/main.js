@@ -264,6 +264,7 @@ module.exports = function($window) {
         };
 
         $win.bind('resize', windowResizeHandler);
+        $win.bind('orientationchange', windowResizeHandler);
         $win.trigger('resize');
     };
 };

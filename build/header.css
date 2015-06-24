@@ -5,7 +5,7 @@ header {
   position: relative;
   z-index: 2;
   transition: all .4s; }
-  @media screen and (max-width: 380px), handheld and (orientation: landscape) {
+  @media all and (max-width: 380px), screen and (orientation: landscape) and (max-width: 700px) {
     header {
       padding: 0 12px 12px; }
       header h1 {

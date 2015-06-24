@@ -11,8 +11,9 @@ header {
     z-index: 2;
     transition: all .4s;
 
-    @media screen and (max-width: $sidebar-width),
-        handheld and (orientation: landscape) {
+    @media all and (max-width: $sidebar-width),
+        screen and (orientation: landscape)
+        and (max-width: 700px) {
         padding: 0 12px 12px;
 
         h1 {
